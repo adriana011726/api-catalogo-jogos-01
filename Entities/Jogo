@@ -1,0 +1,12 @@
+using  System ;
+
+namespace  ExemploApiCatalogoJogos . Entidades
+{
+    público  classe  Jogo
+    {
+         id do Guid  público { get ; definir ; }
+         string  pública Nome { get ; definir ; }
+        public  string  Produtora { get ; definir ; }
+        public  double  Preco { get ; definir ; }
+    }
+}

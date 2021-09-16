@@ -1,0 +1,36 @@
+usando a  Microsoft . AspNetCore . Http ;
+using  System ;
+usando o  sistema . IO ;
+usando o  sistema . Rede ;
+usando o  sistema . Threading . Tarefas ;
+
+namespace  ExemploApiCatalogoJogos . Middleware
+{
+    public  class  ExceptionMiddleware
+    {
+        private  readonly  RequestDelegate  next ;
+
+        public  ExceptionMiddleware ( RequestDelegate  próximo )
+        {
+            isso . próximo  =  próximo ;
+        }
+
+        public  async  Task  InvokeAsync ( contexto HttpContext  )
+        {
+            Experimente
+            {
+                aguardar o  próximo ( contexto );
+            }
+            pegar
+            {
+                esperar  HandleExceptionAsync ( contexto );
+            }
+        }
+
+        Private  static  assíncrono  Task  HandleExceptionAsync ( contexto HttpContext  )
+        {
+            contexto . Resposta . StatusCode  = ( int ) HttpStatusCode . InternalServerError ;
+            aguardar  contexto . Resposta . WriteAsJsonAsync ( new { Message  =  " Ocorreu um erro durante sua solicitação, por favor, tente novamente mais tarde " });
+        }
+    }
+}
